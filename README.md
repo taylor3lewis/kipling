@@ -26,3 +26,5 @@ One million Hows, two million Wheres,
 And seven million Whys!
 
 The Elephant's Child
+
+http://www.destination-innovation.com/how-to-use-six-serving-men-as-a-problem-analysis-method/
