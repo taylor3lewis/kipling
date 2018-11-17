@@ -1,5 +1,5 @@
 # coding: utf-8
-MINICIPIOS = {u"abadia de goiás": None, u"abadia dos dourados": None, u"abadiânia": None, u"abaetetuba": None,
+MUNICIPIOS = {u"abadia de goiás": None, u"abadia dos dourados": None, u"abadiânia": None, u"abaetetuba": None,
               u"abaeté": None, u"abaiara": None, u"abaré": None, u"abatiá": None, u"abaíra": None,
               u"abdon batista": None, u"abel figueiredo": None, u"abelardo luz": None, u"abre campo": None,
               u"abreu e lima": None, u"abreulândia": None, u"acaiaca": None, u"acajutiba": None, u"acarape": None,
@@ -1295,7 +1295,7 @@ MINICIPIOS = {u"abadia de goiás": None, u"abadia dos dourados": None, u"abadiâ
               u"santa rita d`oeste": None, u"são joão do pau d`alho": None, u"são luís do paraitinga": None,
               u"taiúva": None, u"taubaté": None, u"gracho cardoso": None, u"itaporanga d`ajuda": None,
               u"santa luzia do itanhy": None, u"pau d'arco": None, u"são joão do pau d'alho": None}
-ESTADOS = {u"": None, u"acre": None, u"alagoas": None, u"amapá": None, u"amazonas": None, u"ceará": None,
+ESTADOS = {u"acre": None, u"alagoas": None, u"amapá": None, u"amazonas": None, u"ceará": None,
            u"distrito federal": None, u"espírito santo": None, u"goiás": None, u"maranhão": None, u"mato grosso": None,
            u"mato grosso do sul": None, u"minas gerais": None, u"paraná": None, u"paraíba": None, u"pernambuco": None,
            u"piauí": None, u"rio de janeiro": None, u"rio grande do norte": None, u"rio grande do sul": None,

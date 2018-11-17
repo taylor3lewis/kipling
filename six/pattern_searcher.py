@@ -6,6 +6,9 @@ from six.who import NAMES
 from six.who import SURNAMES
 from six.when import SEMANA
 from six.when import MESES
+from six.where import ESTADOS
+from six.where import MUNICIPIOS
+from six.where import SIGLAS
 from custom_libs.toth.stop_words.preposicoes import PREPOSICOES
 from custom_libs.toth.stop_words.contracoes import CONTRACOES
 
@@ -24,7 +27,7 @@ def clean_line(raw_line):
     return line
 
 
-def find_relevant_sentences(text, context, strip_non_text_chars=True):
+def find_relevant_sentences(text, context, strip_non_text_chars=True, break_phrases=False):
     sentences_found = []
     for raw_line in text:
         # Clean Line ----------------------------------------
@@ -45,15 +48,18 @@ def find_relevant_sentences(text, context, strip_non_text_chars=True):
             check = [t for t in tokens if t in context]
 
             if check:
-                sentences_found.append(raw_line.strip('\n'))
+                if break_phrases:
+                    for p in re.split(REGEX_PHRASAL_PATTERN, raw_line.strip('\n')):
+                        if [f for f in p]:
+                            sentences_found.append(p.strip('\n'))
+                else:
+                    sentences_found.append(raw_line.strip('\n'))
 
     return sentences_found
 
 
-def find_names(file_name):
-    f = open(file_name, 'r')
-    names_found = find_relevant_sentences(f.readlines(), NAMES)
-    f.close()
+def find_names(file_content):
+    names_found = find_relevant_sentences(file_content, NAMES)
 
     # process sentences
     names_matched = []
@@ -104,13 +110,10 @@ def match_dates_and_hours(line):
             or re.match(r".+?[0-9]+?([/][0-9]+?)+.+?", unicode(line, 'utf-8')) is not None)
 
 
-def find_dates(file_name):
+def find_dates(content):
     date_context = SEMANA.copy()
     date_context.update(MESES)
-    f = open(file_name, 'r')
-    content = f.readlines()
     sentences = find_relevant_sentences(content, date_context, strip_non_text_chars=False)
-    f.close()
 
     # find hours and dates with regex
     for line in content:
@@ -118,11 +121,32 @@ def find_dates(file_name):
             if match_dates_and_hours(phrase):
                 sentences.append(phrase)
 
-    found_date_frags = []
+    found_date_frags = set()
     for sentence in sentences:
         for phrase in re.split(REGEX_PHRASAL_PATTERN, sentence.lower()):
             if [f for f in phrase.strip('\n').split() if f in date_context or match_dates_and_hours(f)]:
-                found_date_frags.append(phrase.strip('\n').strip())
+                found_date_frags.add(phrase.strip('\n').strip())
 
+    found_date_frags = list(found_date_frags)
     found_date_frags.sort(key=lambda s: len(s))
     return found_date_frags
+
+
+def find_places(content):
+    places_context = ESTADOS.copy()
+    places_context.update(MUNICIPIOS)
+    places_context.update(ESTADOS)
+
+    places = set()
+    for s in content:
+        s = s.lower()
+        place_found = []
+        for k in places_context.keys():
+            if re.search(r"\b"+k+r"\b", unicode(s, 'utf-8'), re.UNICODE) is not None:
+                place_found.append(k)
+        if place_found:
+            place_found.sort(key=lambda i: len(i))
+            places.add(place_found[-1])
+    places = list(places)
+    places.sort(key=lambda i: len(i))
+    return places
