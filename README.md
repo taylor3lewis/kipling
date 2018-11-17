@@ -1,6 +1,6 @@
 # kipling
 
-Six Serving Men
+###Six Serving Men
 
 I KEEP six honest serving-men
 (They taught me all I knew);
@@ -16,12 +16,12 @@ For I am busy then,
 As well as breakfast, lunch, and tea,
 For they are hungry men.
 But different folk have different views;
-I know a person small—
+I know a person smallâ€”
 She keeps ten million serving-men,
 Who get no rest at all!
 
 She sends&#39;em abroad on her own affairs,
-From the second she opens her eyes—
+From the second she opens her eyesâ€”
 One million Hows, two million Wheres,
 And seven million Whys!
 
