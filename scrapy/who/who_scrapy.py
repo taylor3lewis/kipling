@@ -13,7 +13,6 @@ SUBJECT = "NOMES_MASC".upper()
 root_link = "https://www.dicionariodenomesproprios.com.br/nomes-masculinos/%s/"
 # SUBJECT = "NOMES_FEMI".upper()
 # root_link = "https://www.dicionariodenomesproprios.com.br/nomes-femininos/%s/"
-NUMBER_OF_PAGES = 500
 
 unique = set()
 

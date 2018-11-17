@@ -8,8 +8,6 @@ from bs4 import BeautifulSoup
 # from nltk.corpus import stopwords
 stop_words = set()
 
-ROOT_DATA = '/var/www/job-scrapper/daemon/data/'
-
 
 def get_soup(link):
     html = requests.get(link).content

@@ -891,7 +891,7 @@ NAMES = {u"isabela": None, u"camila": None, u"valentina": None, u"lara": None, u
          u"aírton": None, u"stefan": None, u"jerônimo": None, u"yudi": None, u"ramsés": None, u"hermes": None,
          u"eudes": None, u"djalma": None, u"allyson": None, u"enrique": None, u"diógenes": None, u"adônis": None,
          u"welington": None, u"omar": None, u"josé antônio": None, u"enos": None, u"pedro augusto": None,
-         u"jean carlos": None, u"aparecido": None, u"maximiliano": None, u"jadson": None, u"sete": None,
+         u"jean carlos": None, u"aparecido": None, u"maximiliano": None, u"jadson": None,
          u"valdemir": None, u"bruno henrique": None, u"guilherme henrique": None, u"guto": None, u"júnio": None,
          u"antoni": None, u"oziel": None, u"lohan": None, u"arlindo": None, u"everaldo": None, u"estevan": None,
          u"plínio": None, u"régis": None, u"guido": None, u"roque": None, u"rick": None, u"emílio": None,
@@ -1418,7 +1418,7 @@ NAMES = {u"isabela": None, u"camila": None, u"valentina": None, u"lara": None, u
          u"gracílio": None, u"antálcidas": None, u"graciniato": None, u"sofrônio": None, u"hirônides": None,
          u"oduíno": None, u"antimáco": None, u"eumênis": None, u"obeíma": None, u"antípara": None, u"balbílio": None,
          u"apício": None, u"basilindo": None, u"elimeleque": None, u"hoirandí": None, u"barsaré": None,
-         u"habacuque": None, u"erivan": None}
+         u"habacuque": None, u"erivan": None, u"mayor": None}
 SURNAMES = {u"christiansen": None, u"nielsen": None, u"da": None, u"rocha": None, u"abreu": None, u"almeida": None,
             u"altoé": None, u"alves": None, u"amaral": None, u"ambrozina": None, u"amorim": None, u"araújo": None,
             u"arrivabene": None, u"azevedo": None, u"abaine": None, u"abaurre": None, u"abbud": None,
@@ -1716,4 +1716,4 @@ SURNAMES = {u"christiansen": None, u"nielsen": None, u"da": None, u"rocha": None
             u"zanoni": None, u"zantonelli": None, u"zavarise": None, u"zavarize": None, u"zerbone": None,
             u"zicardi": None, u"ziviani": None, u"zocatelli": None, u"zoppi": None, u"zorzal": None,
             u"zorzanelli": None, u"zucatelli": None, u"zuchi": None, u"zucoloto": None, u"zulianni": None,
-            u"zuqui": None, u"zuza": None}
+            u"zuqui": None, u"zuza": None, u"gouveia": None}
