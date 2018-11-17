@@ -18,6 +18,7 @@ But after they have worked for me,
 
 I give them all a rest.
 
+§
 
 I let them rest from nine till five,
 
@@ -35,6 +36,7 @@ She keeps ten million serving-men,
 
 Who get no rest at all!
 
+§
 
 She sends&#39;em abroad on her own affairs,
 
@@ -44,8 +46,7 @@ One million Hows, two million Wheres,
 
 And seven million Whys!
 
-
-
+---------------------
 (The Elephant's Child)
 
 http://www.destination-innovation.com/how-to-use-six-serving-men-as-a-problem-analysis-method/
