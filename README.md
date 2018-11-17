@@ -4,8 +4,8 @@
 
 I KEEP six honest serving-men
 (They taught me all I knew);
-Their names are What and Why and When 
-And How and Where and Who.
+Their names are **What** and **Why** and **When** 
+And **How** and **Where** and **Who**.
 I send them over land and sea,
 I send them east and west;
 But after they have worked for me,
