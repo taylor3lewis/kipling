@@ -2,17 +2,20 @@
 import re
 from custom_libs.toth.acutes_filter import strip_non_text
 from custom_libs.toth.toth import check_str_integrity
-from six.who import NAMES
-from six.who import SURNAMES
+from six.who import NOMES
+from six.who import SOBRENOMES
 from six.when import SEMANA
 from six.when import MESES
 from six.where import ESTADOS
 from six.where import MUNICIPIOS
 from six.where import SIGLAS
+from six.why import PORQUES
+from six.how import COMOS
 from custom_libs.toth.stop_words.preposicoes import PREPOSICOES
 from custom_libs.toth.stop_words.contracoes import CONTRACOES
 
 REGEX_PHRASAL_PATTERN = r"[.,;:?!]"
+REGEX_SENTENCE_PATTERN = r"[.:?!]"
 
 
 def remove_extra_space(text):
@@ -25,6 +28,31 @@ def clean_line(raw_line):
     line = unicode(raw_line.strip('\n').lower(), 'utf-8')
     line = remove_extra_space(line)
     return line
+
+
+def find_relevant_sentences_reverse_mode(text, context, break_phrases=True):
+    sentences_found = set()
+    phrases_found = set()
+
+    for raw_line in text:
+        raw_line = raw_line.lower().strip('\n')
+        for k in context.keys():
+            if re.search(r"\b" + k + r"\b", unicode(raw_line, 'utf-8'), re.UNICODE) is not None:
+                # if not break_phrases:
+                    # print k, '>', raw_line
+                sentences_found.add(raw_line)
+
+    if break_phrases:
+        for s in sentences_found:
+            for p in re.split(REGEX_SENTENCE_PATTERN, s):
+                for k in context.keys():
+                    if re.search(r"\b" + k + r"\b", unicode(p, 'utf-8'), re.UNICODE) is not None:
+                        # print k, '>', p
+                        phrases_found.add(p)
+
+        return phrases_found
+    else:
+        return sentences_found
 
 
 def find_relevant_sentences(text, context, strip_non_text_chars=True, break_phrases=False):
@@ -59,7 +87,7 @@ def find_relevant_sentences(text, context, strip_non_text_chars=True, break_phra
 
 
 def find_names(file_content):
-    names_found = find_relevant_sentences(file_content, NAMES)
+    names_found = find_relevant_sentences(file_content, NOMES)
 
     # process sentences
     names_matched = []
@@ -74,12 +102,12 @@ def find_names(file_content):
             phrase_unicode = unicode(phrase.strip('\n').lower(), 'utf-8')
 
             # Checking relevance
-            check = [t for t in phrase_unicode.split() if t in NAMES]
+            check = [t for t in phrase_unicode.split() if t in NOMES]
             if check:
 
                 # Tokenizing
                 tokens = [w for w in phrase_unicode.strip().lower().split()
-                          if w in NAMES or w in SURNAMES]
+                          if w in NOMES or w in SOBRENOMES]
 
                 # Acceptance Logic
                 while tokens and (tokens[0] in PREPOSICOES or tokens[0] in CONTRACOES or tokens[0] == "e"):
@@ -89,13 +117,15 @@ def find_names(file_content):
 
                 # Checking if is not empty
                 if len(tokens) > 1:
-                    names_matched.append(tokens)
+                    name = " ".join(tokens)
+                    if ' e do ' not in name:
+                        names_matched.append(name)
 
     # data is ready
-    names_matched_sorted = [" ".join(names) for names in names_matched]
+    names_matched_sorted = [names for names in names_matched]
     names_matched_sorted = list(set(names_matched_sorted))
     names_matched_sorted.sort(key=lambda s: len(s))
-    return names_matched_sorted
+    return sorted(names_matched_sorted)
 
 
 def generic_clean(text):
@@ -125,6 +155,10 @@ def find_dates(content):
     for sentence in sentences:
         for phrase in re.split(REGEX_PHRASAL_PATTERN, sentence.lower()):
             if [f for f in phrase.strip('\n').split() if f in date_context or match_dates_and_hours(f)]:
+                print '>', " ".join([f for f in phrase.strip('\n').strip().split()
+                                    if f in date_context
+                                    or f == 'de'
+                                    or re.match(r"[0-9h/]+", f)])
                 found_date_frags.add(phrase.strip('\n').strip())
 
     found_date_frags = list(found_date_frags)
@@ -150,3 +184,40 @@ def find_places(content):
     places = list(places)
     places.sort(key=lambda i: len(i))
     return places
+
+
+def reduce_by_len(frags):
+    matches = set()
+    for f1 in frags:
+        for f2 in frags:
+            if f1 != f2 and f1 in f2:
+                if len(f1) >= len(f2):
+                    matches.add(f1)
+                else:
+                    matches.add(f2)
+    return matches
+
+
+def frags_reducer(frags):
+    matches = reduce_by_len(frags)
+    remainder = set()
+    for f in frags:
+        check = False
+        for m in matches:
+            if m in f:
+                check = True
+                break
+        if not check:
+            remainder.add(f)
+    matches_joined = matches | remainder
+    return matches_joined
+
+
+def find_why(content, break_phrases=True):
+    sentences = find_relevant_sentences_reverse_mode(content, PORQUES, break_phrases=break_phrases)
+    return sentences
+
+
+def find_how(content, break_phrases=True):
+    sentences = find_relevant_sentences_reverse_mode(content, COMOS, break_phrases=break_phrases)
+    return sentences
