@@ -9,7 +9,7 @@ DESCRIÇÃO: Sistema para busca automatizada, em textos, das seis seguintes info
 
 ----------------------
 
-# kipling
+# Rudyard Kipling
 
 ### Six Serving Men
 
