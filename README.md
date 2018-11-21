@@ -3,7 +3,7 @@ DESCRIÇÃO: Sistema para busca automatizada, em textos, das seis seguintes info
 1. ( Quem? ) ----> Nomes
 2. ( Quando? ) --> Datas / Horários
 3. ( Onde? ) ----> Lugares / Países / Estados / Cidades / Bairros
-4. ( Por quê? ) -> Frases que indicam motivos e razões para acontecer algo
+4. ( Por quê? ) --> Frases que indicam motivos e razões para acontecer algo
 5. ( Como? ) ----> Frases que indicam a maneira como aconteceu algo
 6. ( O Ouê? ) ---> Substantivos / palavras-chave
 
